@@ -65,4 +65,13 @@ describe SecureTrading::Response do
       end
     end
   end
+
+  describe "#request_reference" do
+    include Fixtures
+
+    it "should return request reference from the response" do
+      response = SecureTrading::Response.new(good_response_xml)
+      response.request_reference.must_equal 'W4-paxj67xr'
+    end
+  end
 end
