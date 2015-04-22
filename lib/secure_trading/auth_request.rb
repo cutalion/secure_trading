@@ -9,7 +9,14 @@ class SecureTrading::AuthRequest
   end
 
   def body
-    builder = Nokogiri::XML::Builder.new do |xml|
+    builder.to_xml
+  end
+
+
+  private
+
+  def builder
+    Nokogiri::XML::Builder.new do |xml|
       xml.requestblock(version: payment.api_version) {
         xml.alias_ config.login
         xml.request(type: payment.request_type) {
@@ -33,7 +40,10 @@ class SecureTrading::AuthRequest
             xml.country    payment.billing_country_code
             xml.postcode   payment.billing_postcode
             xml.email      payment.billing_email
-            xml.telephone  payment.billing_phone, type: payment.billing_phone_type
+
+            unless payment.billing_phone.to_s.empty? || payment.billing_phone_type.to_s.empty?
+              xml.telephone  payment.billing_phone, type: payment.billing_phone_type
+            end
 
             xml.name {
               xml.prefix   payment.billing_name_prefix
@@ -60,7 +70,10 @@ class SecureTrading::AuthRequest
             xml.country    payment.customer_country_code
             xml.postcode   payment.customer_postcode
             xml.email      payment.customer_email
-            xml.telephone  payment.customer_phone, type: payment.customer_phone_type
+
+            unless payment.customer_phone.to_s.empty? || payment.customer_phone_type.to_s.empty?
+              xml.telephone  payment.customer_phone, type: payment.customer_phone_type
+            end
 
             xml.name {
               xml.prefix   payment.customer_name_prefix
@@ -78,13 +91,7 @@ class SecureTrading::AuthRequest
         }
       }
     end
-
-    builder.to_xml
   end
-
-
-
-  private
 
   def config
     SecureTrading.configuration
