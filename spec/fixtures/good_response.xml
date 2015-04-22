@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<responseblock version="3.67">
+  <requestreference>W4-paxj67xr</requestreference>
+  <response type="AUTH">
+    <merchant>
+      <merchantname>Worldfloor Retail Ltd</merchantname>
+      <orderreference>Example AUTH</orderreference>
+      <tid>27882788</tid>
+      <merchantnumber>00000000</merchantnumber>
+      <merchantcountryiso2a>GB</merchantcountryiso2a>
+    </merchant>
+    <transactionreference>4-9-2053545</transactionreference>
+    <timestamp>2015-04-21 14:23:21</timestamp>
+    <acquirerresponsecode>00</acquirerresponsecode>
+    <operation>
+      <splitfinalnumber>1</splitfinalnumber>
+      <accounttypedescription>ECOM</accounttypedescription>
+    </operation>
+    <settlement>
+      <settleduedate>2015-04-21</settleduedate>
+      <settlestatus>0</settlestatus>
+    </settlement>
+    <billing>
+      <amount currencycode="GBP">2115</amount>
+      <payment type="VISA">
+        <issuer>SecureTrading Test Issuer1</issuer>
+        <pan>411111######1111</pan>
+        <issuercountry>US</issuercountry>
+      </payment>
+      <dcc enabled="0"/>
+    </billing>
+    <authcode>TEST31</authcode>
+    <live>0</live>
+    <error>
+      <message>Ok</message>
+      <code>0</code>
+    </error>
+    <security>
+      <postcode>0</postcode>
+      <securitycode>2</securitycode>
+      <address>0</address>
+    </security>
+  </response>
+</responseblock>
