@@ -1,4 +1,6 @@
 class SecureTrading::Payment
+  class UnknownAttributes < SecureTrading::Exception; end
+
   include Virtus.model
 
   attribute  :account_type_description, String, default: 'ECOM'
@@ -54,4 +56,20 @@ class SecureTrading::Payment
 
   attribute  :settle_due_date, String
   attribute  :settle_status, String
+
+
+  def initialize(attrs = {})
+    fail_if_has_unknown_attributes attrs
+
+    super
+  end
+
+  private
+
+  def fail_if_has_unknown_attributes(attrs)
+    unknown = attrs.keys.map(&:to_s) - self.attributes.keys.map(&:to_s)
+    if unknown.any?
+      raise UnknownAttributes, unknown.inspect
+    end
+  end
 end

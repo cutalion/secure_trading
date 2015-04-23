@@ -4,6 +4,8 @@ require 'base64'
 require 'virtus'
 
 module SecureTrading
+  class Exception < Exception; end
+
   def self.configure(&block)
     yield(configuration)
   end
