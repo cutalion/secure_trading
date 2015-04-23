@@ -74,4 +74,13 @@ describe SecureTrading::Response do
       response.request_reference.must_equal 'W4-paxj67xr'
     end
   end
+
+  describe "#transaction_reference" do
+    include Fixtures
+
+    it "should return transaction reference from the response" do
+      response = SecureTrading::Response.new(good_response_xml)
+      response.transaction_reference.must_equal '4-9-2053545'
+    end
+  end
 end

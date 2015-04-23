@@ -14,6 +14,10 @@ class SecureTrading::Response
     body.at_css('requestreference').content
   end
 
+  def transaction_reference
+    body.at_css('transactionreference').content
+  end
+
   def error_code
     body.at_css('error code')
   end
